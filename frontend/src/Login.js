@@ -1,19 +1,16 @@
-import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./App.css";
 import Axios from "axios";
+import React, { useState } from "react";
 
 export default function Signup() {
-  const [registerStatus, setRegisterStatus] = useState("");
+  const [loginStatus, setLoginStatus] = useState("");
 
   const formik = useFormik({
     initialValues: {
-      firstname: "",
-      lastname: "",
       email: "",
       password: "",
-      contact: "",
     },
 
     validationSchema: Yup.object({
@@ -27,7 +24,7 @@ export default function Signup() {
       password: Yup.string()
         .max(8, "Only 8 characters are needed")
         .required("Required Password"),
-      contact: Yup.string()
+      contact: Yup.number()
         .max(11, "Invalid Number")
         .required("Required number"),
     }),
@@ -37,21 +34,16 @@ export default function Signup() {
     },
   });
 
-  const register = (e) => {
+  const login = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:3001/register", {
-      firstname: formik.values.firstname,
-      lastname: formik.values.lastname,
-      contact: formik.values.contact,
+    Axios.post("http://localhost:3001/login", {
       email: formik.values.email,
       password: formik.values.password,
     }).then((response) => {
-      //   // setRegisterStatus(response);
-      //   // console.log(response);
       if (response.data.message) {
-        setRegisterStatus(response.data.message);
+        setLoginStatus(response.data.message);
       } else {
-        setRegisterStatus("ACCOUNT CREATED SUCCESSFULLY");
+        setLoginStatus(response.data[0].email);
       }
     });
   };
@@ -61,48 +53,6 @@ export default function Signup() {
     <form onSubmit={formik.handleSubmit}>
       <div className="container">
         <div className="container1">
-          <label for="firstname">First Name</label>
-          <input
-            className="firstname"
-            name="firstname"
-            type="text"
-            placeholder="First Name"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.firstname}
-            required
-          />
-          {formik.touched.firstname && formik.errors.firstname ? (
-            <p> {formik.errors.firstname} </p>
-          ) : null}
-          <label for="lastname">Last Name</label>
-          <input
-            className="lastname"
-            name="lastname"
-            type="text"
-            placeholder="Last Name"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.lastname}
-            required
-          />
-          {formik.touched.lastname && formik.errors.lastname ? (
-            <p> {formik.errors.lastname} </p>
-          ) : null}
-          <label for="contact">Contact Number</label>
-          <input
-            className="contact"
-            name="contact"
-            type="text"
-            placeholder="Contact"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.contact}
-            required
-          />
-          {formik.touched.contact && formik.errors.contact ? (
-            <p> {formik.errors.contact} </p>
-          ) : null}
           <label for="email">Email</label>
           <input
             className="email"
@@ -131,10 +81,10 @@ export default function Signup() {
           {formik.touched.password && formik.errors.password ? (
             <p> {formik.errors.password} </p>
           ) : null}
-          <button className="registerbtn" type="submit" onClick={register}>
-            Register
+          <button className="registerbtn" type="submit" onClick={login}>
+            Login
           </button>{" "}
-          {registerStatus}
+          {loginStatus}
         </div>
       </div>
     </form>

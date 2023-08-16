@@ -1,64 +1,47 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-}
+* {box-sizing: border-box}
 
 .container {
   display: flex;
+  justify-content: center;
+}
+
+/* Add padding to containers */
+.container1 {margin: 20px;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 200px;
+  width: 300px;
 }
 
-.container .loginForm {
-  margin: 100px;
-}
-
-.container .loginForm form {
-  background-color: wheat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 50vh;
-  width: 150%;
-  padding: 0 20px;
-}
-
-.container .loginForm form h4 {
-  font-size: 30px;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.container .loginForm form label {
-  margin-bottom: 7px;
-}
-
-.container .loginForm form .textInput {
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=email], input[type=number] {
   width: 100%;
-  height: 40px;
-  margin-bottom: 20px;
-  outline: none;
-  padding: 0px 10px;
+  padding: 10px;
+  margin: 10px 0 ;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
 }
 
-.container .loginForm form .button {
-  width: auto;
-  padding: 8px 30px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
   cursor: pointer;
-  border: 1px solid black;
-  outline: none;
+  width: 100%;
+  opacity: 0.9;
+}
+.registerbtn:hover {
+  opacity:1;
 }
 
-.container .loginForm form .button:hover {
-  background-color: aliceblue;
+p {
+  color:red;
 }
