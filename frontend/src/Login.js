@@ -14,19 +14,12 @@ export default function Signup() {
     },
 
     validationSchema: Yup.object({
-      firstname: Yup.string()
+      email: Yup.string()
         .max(15, "Only 15 characters are needed")
-        .required("Required First Name"),
-      lastname: Yup.string()
-        .max(15, "Only 15 characters are needed")
-        .required("Required Last Name"),
-      email: Yup.string().email("Wrong Email").required("Email Required"),
+        .required("Required Email"),
       password: Yup.string()
         .max(8, "Only 8 characters are needed")
         .required("Required Password"),
-      contact: Yup.number()
-        .max(11, "Invalid Number")
-        .required("Required number"),
     }),
 
     onSubmit: (values) => {
@@ -57,8 +50,8 @@ export default function Signup() {
           <input
             className="email"
             name="email"
-            type="email"
-            placeholder="Email"
+            type="text"
+            placeholder="email"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}

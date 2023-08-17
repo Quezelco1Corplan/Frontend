@@ -27,8 +27,8 @@ export default function Signup() {
       password: Yup.string()
         .max(8, "Only 8 characters are needed")
         .required("Required Password"),
-      contact: Yup.string()
-        .max(11, "Invalid Number")
+      contact: Yup.number()
+        .min(11, "Invalid Number")
         .required("Required number"),
     }),
 
@@ -61,7 +61,7 @@ export default function Signup() {
     <form onSubmit={formik.handleSubmit}>
       <div className="container">
         <div className="container1">
-          <label for="firstname">First Name</label>
+          <label htmlFor="firstname">First Name</label>
           <input
             className="firstname"
             name="firstname"
@@ -75,7 +75,7 @@ export default function Signup() {
           {formik.touched.firstname && formik.errors.firstname ? (
             <p> {formik.errors.firstname} </p>
           ) : null}
-          <label for="lastname">Last Name</label>
+          <label htmlFor="lastname">Last Name</label>
           <input
             className="lastname"
             name="lastname"
@@ -89,11 +89,11 @@ export default function Signup() {
           {formik.touched.lastname && formik.errors.lastname ? (
             <p> {formik.errors.lastname} </p>
           ) : null}
-          <label for="contact">Contact Number</label>
+          <label htmlFor="contact">Contact Number</label>
           <input
             className="contact"
             name="contact"
-            type="text"
+            type="number"
             placeholder="Contact"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -103,7 +103,7 @@ export default function Signup() {
           {formik.touched.contact && formik.errors.contact ? (
             <p> {formik.errors.contact} </p>
           ) : null}
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             className="email"
             name="email"
@@ -117,7 +117,7 @@ export default function Signup() {
           {formik.touched.email && formik.errors.email ? (
             <p> {formik.errors.email} </p>
           ) : null}
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             className="password"
             name="password"
