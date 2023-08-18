@@ -1,11 +1,21 @@
 import "./App.css";
-// import Signup from "./Signup";
-import Login from "./Login";
+import "./css/Login.css";
+import "./css/Signup.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
