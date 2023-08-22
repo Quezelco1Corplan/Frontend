@@ -10,6 +10,22 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <header>
+          <h1>Your Page Title</h1>
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/about">About</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />

@@ -1,25 +1,28 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext"; // Import useNavigate for navigation
 
 function Dashboard() {
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+  const { setIsLoggedIn } = useAuth();
 
-  const handleLogout = () => {
-    // Perform logout logic here
-    // For example:
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
-    // 1. Clear user session (assuming you're using browser cookies or local storage)
-    localStorage.removeItem("userToken"); // Remove the user's authentication token
-
-    // 2. Redirect the user to the login page
-    navigate("/"); // Navigate to the login page using the `navigate` function
+  const logout = () => {
+    setIsLoggedIn(false); // Set authentication state
+    navigate("/");
   };
 
   return (
     <div className="dashboard-content">
       <p>Dashboard content goes here...</p>
       {/* Add a logout button */}
-      <button onClick={handleLogout}>Logout</button>
+      <button onClick={logout}>Logout</button>
     </div>
   );
 }

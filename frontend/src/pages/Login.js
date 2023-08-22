@@ -2,12 +2,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 
 function Login() {
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState("");
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -28,7 +29,6 @@ function Login() {
   });
 
   useEffect(() => {
-    const isLoggedIn = false;
     if (isLoggedIn) {
       navigate("/Dashboard");
     }
@@ -43,6 +43,7 @@ function Login() {
       if (response.data.message) {
         setLoginStatus(response.data.message);
       } else {
+        setIsLoggedIn(true); // Set authentication state
         navigate("/Dashboard");
       }
     });
