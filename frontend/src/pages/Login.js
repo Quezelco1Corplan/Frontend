@@ -24,7 +24,17 @@ function Login() {
     }),
 
     onSubmit: (values) => {
-      console.log(values);
+      Axios.post("http://localhost:3001/login", {
+        email: values.email,
+        password: values.password,
+      }).then((response) => {
+        if (response.data.message) {
+          setLoginStatus(response.data.message);
+        } else {
+          setIsLoggedIn(true);
+          navigate("/Dashboard");
+        }
+      });
     },
   });
 
@@ -32,22 +42,22 @@ function Login() {
     if (isLoggedIn) {
       navigate("/Dashboard");
     }
-  }, [navigate]);
+  }, [navigate, isLoggedIn]);
 
-  const login = (e) => {
-    e.preventDefault();
-    Axios.post("http://localhost:3001/login", {
-      email: formik.values.email,
-      password: formik.values.password,
-    }).then((response) => {
-      if (response.data.message) {
-        setLoginStatus(response.data.message);
-      } else {
-        setIsLoggedIn(true); // Set authentication state
-        navigate("/Dashboard");
-      }
-    });
-  };
+  // const login = (e) => {
+  //   e.preventDefault();
+  //   Axios.post("http://localhost:3001/login", {
+  //     email: formik.values.email,
+  //     password: formik.values.password,
+  //   }).then((response) => {
+  //     if (response.data.message) {
+  //       setLoginStatus(response.data.message);
+  //     } else {
+  //       setIsLoggedIn(true);
+  //       navigate("/Dashboard");
+  //     }
+  //   });
+  // };
 
   console.log(formik.touched);
   return (
@@ -92,7 +102,7 @@ function Login() {
               <p className="error">ㅤ</p>
             )}
           </div>
-          <button className="loginbtn" type="submit" onClick={login}>
+          <button className="loginbtn" type="submit">
             Login
           </button>{" "}
           {loginStatus}
