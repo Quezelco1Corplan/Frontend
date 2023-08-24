@@ -1,0 +1,85 @@
+/* Sidebar styles */
+.sidebar {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #161212;
+  overflow-x: hidden;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  
+
+}
+
+.sidebar .Logo {
+ text-align: center;
+}
+
+h1 {
+  color: #f1f1f1;
+}
+/* Sidebar links and dropdown button */
+.sidebar a, .dropdown-btn {
+  text-decoration: none;
+  font-size: 20px;
+  color: #f7f1f1;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidebar a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Active dropdown button */
+.dropdown-btn.active {
+  background-color: green;
+  color: white;
+}
+
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.icon {
+ justify-content: center;
+  margin-left: 120px;
+  padding:10px;
+}
+/* Dropdown container */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding: 10px;
+
+}
+
+.dropdown-container a{
+  text-align: center;
+  margin: 10px;
+}
+
+/* Active dropdown container */
+.dropdown-container.active {
+  display: block;
+}
+
+
+/* Media query for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidebar { padding-top: 15px; }
+  .sidebar a { font-size: 18px; }
+}

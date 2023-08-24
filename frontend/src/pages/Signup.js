@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
 import { Link } from "react-router-dom";
+import "../css/Signup.css";
 
 function Signup() {
   const [registerStatus, setRegisterStatus] = useState("");
@@ -107,7 +108,7 @@ function Signup() {
             <input
               className="contact"
               name="contact"
-              type="number"
+              type="text"
               placeholder="Input Contact Number"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}

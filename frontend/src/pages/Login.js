@@ -103,16 +103,6 @@ function Login() {
             </p>
           </div>
         </div>
-
-        <div className="home-button">
-          <button
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            Go to the home page
-          </button>
-        </div>
       </div>
     </form>
   );
